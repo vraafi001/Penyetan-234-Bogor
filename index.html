@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penyetan 234 - Nasi Kotak Anti Ribet</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Header / Hero Section */
+        .header {
+            padding: 40px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #d9534f;
+            margin-bottom: 10px;
+        }
+
+        .header .sub-headline {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .promo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 5px;
+        }
+
+        .promo-conditions {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 40px 20px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .menu-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .menu-card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .menu-card .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d9534f;
+            margin-bottom: 15px;
+        }
+        
+        .package-items {
+            font-size: 0.9rem;
+            color: #666;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .package-items li {
+            margin-bottom: 5px;
+        }
+        
+        /* Order Button */
+        .order-button {
+            display: block;
+            background-color: #25D366;
+            color: #fff;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            margin-top: auto;
+        }
+        
+        .order-button:hover {
+            background-color: #1DAA53;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: #343a40;
+            color: #fff;
+            padding: 50px 20px;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 30px;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 50px;
+            margin: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .contact-links a.whatsapp {
+            background-color: #25D366;
+        }
+        
+        .contact-links a.whatsapp:hover {
+            background-color: #1DAA53;
+        }
+
+        .contact-links a.instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border: 2px solid #d6249f;
+        }
+        
+        .contact-links a.instagram:hover {
+            opacity: 0.8;
+        }
+
+        .address {
+            margin-top: 30px;
+            color: #ccc;
+        }
+        
+        /* Map Section */
+        .map-container {
+            margin-top: 40px;
+        }
+        
+        .map-container h3 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <img src="https://i.ibb.co/L6qBf1d/IMG-20251027-WA0005.jpg" alt="Logo Penyetan 234" class="logo">
+            <h1>NASI KOTAK ANTI RIBET</h1>
+            <p class="sub-headline">DELIVERY ORDER</p>
+            <div class="promo">GRATIS ONGKIR</div>
+            <p class="promo-conditions">*Ketentuan Berlaku</p>
+        </div>
+    </header>
+
+    <!-- Menu Section -->
+    <main class="menu-section">
+        <div class="container">
+            <h2>Pilihan Menu Paket</h2>
+            <div class="menu-grid">
+                <!-- Bebek -->
+                <div class="menu-card">
+                    <img src="https://i.ibb.co/hZpYmYw/IMG-20251027-WA0011.jpg" alt="Bebek Goreng / Bakar">
+                    <div class="menu-card-content">
+                        <div>
+                            <h3>Bebek Goreng / Bakar</h3>
+                            <div class="price">Rp 45.000</div>
+                            <ul class="package-items">
+                                <li>Nasi, <strong>Bebek</strong>, Tahu, Jukut Goreng, Terong Goreng, Lalapan, 2 Jenis Sambal</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/628116173651?text=Halo%2C%20saya%20mau%20pesan%20paket%20Bebek%20Goreng%20%2F%20Bakar." class="order-button" target="_blank">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <!-- Ayam Bakar -->
+                <div class="menu-card">
+                    <img src="https://i.ibb.co/JqKzLhT/IMG-20251027-WA0010.jpg" alt="Ayam Bakar">
+                    <div class="menu-card-content">
+                        <div>
+                            <h3>Ayam Bakar</h3>
+                            <div class="price">Rp 30.000</div>
+                            <ul class="package-items">
+                                <li>Nasi, <strong>Ayam Bakar</strong>, Tahu, Jukut Goreng, Terong Goreng, Lalapan, 2 Jenis Sambal</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/628116173651?text=Halo%2C%20saya%20mau%20pesan%20paket%20Ayam%20Bakar." class="order-button" target="_blank">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <!-- Ikan Kembung -->
+                <div class="menu-card">
+                    <img src="https://i.ibb.co/d2X2c6z/IMG-20251027-WA0009.jpg" alt="Ikan Kembung Goreng / Bakar">
+                    <div class="menu-card-content">
+                        <div>
+                            <h3>Ikan Kembung Goreng / Bakar</h3>
+                            <div class="price">Rp 28.000</div>
+                            <ul class="package-items">
+                                <li>Nasi, <strong>Ikan Kembung</strong>, Tahu, Jukut Goreng, Terong Goreng, Lalapan, 2 Jenis Sambal</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/628116173651?text=Halo%2C%20saya%20mau%20pesan%20paket%20Ikan%20Kembung%20Goreng%20%2F%20Bakar." class="order-button" target="_blank">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <!-- Ayam Goreng -->
+                <div class="menu-card">
+                    <img src="https://i.ibb.co/k2mJgQz/IMG-20251027-WA0012.jpg" alt="Ayam Goreng">
+                    <div class="menu-card-content">
+                        <div>
+                            <h3>Ayam Goreng</h3>
+                            <div class="price">Rp 28.000</div>
+                            <ul class="package-items">
+                                <li>Nasi, <strong>Ayam Goreng</strong>, Tahu, Jukut Goreng, Terong Goreng, Lalapan, 2 Jenis Sambal</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/628116173651?text=Halo%2C%20saya%20mau%20pesan%20paket%20Ayam%20Goreng." class="order-button" target="_blank">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <!-- Ikan Lele -->
+                <div class="menu-card">
+                    <img src="https://i.ibb.co/wz0jQxG/IMG-20251027-WA0008.jpg" alt="Ikan Lele Goreng / Bakar">
+                    <div class="menu-card-content">
+                        <div>
+                            <h3>Ikan Lele Goreng / Bakar</h3>
+                            <div class="price">Rp 31.000</div>
+                            <ul class="package-items">
+                                <li>Nasi, <strong>Ikan Lele</strong>, Tahu, Jukut Goreng, Terong Goreng, Lalapan, 2 Jenis Sambal</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/628116173651?text=Halo%2C%20saya%20mau%20pesan%20paket%20Ikan%20Lele%20Goreng%20%2F%20Bakar." class="order-button" target="_blank">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <!-- Ikan Nila -->
+                <div class="menu-card">
+                    <img src="https://i.ibb.co/gZ3J6fX/IMG-20251027-WA0007.jpg" alt="Ikan Nila Goreng / Bakar">
+                    <div class="menu-card-content">
+                        <div>
+                            <h3>Ikan Nila Goreng / Bakar</h3>
+                            <div class="price">Rp 33.000</div>
+                            <ul class="package-items">
+                                <li>Nasi, <strong>Ikan Nila</strong>, Tahu, Jukut Goreng, Terong Goreng, Lalapan, 2 Jenis Sambal</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/628116173651?text=Halo%2C%20saya%20mau%20pesan%20paket%20Ikan%20Nila%20Goreng%20%2F%20Bakar." class="order-button" target="_blank">Pesan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact Section -->
+    <footer class="contact-section">
+        <div class="container">
+            <h2>Hubungi Kami untuk Memesan</h2>
+            <div class="contact-links">
+                <a href="https://wa.me/628116173651" class="whatsapp" target="_blank">WhatsApp 1 (0811-6173-651)</a>
+                <a href="https://wa.me/6289542823178" class="whatsapp" target="_blank">WhatsApp 2 (0895-4282-3178)</a>
+                <a href="https://www.instagram.com/penyetan234official" class="instagram" target="_blank">@penyetan234official</a>
+            </div>
+            <p class="address">
+                HALAL LAGI THAYYIB<br>
+                Jl. Kol Ahmad Syam No. 17 Katulampa, Bogor Timur
+            </p>
+            
+            <!-- Map Section -->
+            <div class="map-container">
+                <h3>Lokasi Kami</h3>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.334701831882!2d106.8400190747548!3d-6.60525299339024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c6613203b031%3A0x8031473a38097c3c!2sPenyetan%20234!5e0!3m2!1sen!2sid!4v1730622081943!5m2!1sen!2sid" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
