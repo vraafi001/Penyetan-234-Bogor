@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#1a1a1a">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
     <title>Penyetan 234 - Nasi Kotak Paling Satset Se-Bogor!</title>
     <style>
         * {
@@ -208,6 +209,44 @@
 
         .menu-card:hover::before {
             opacity: 1;
+        }
+
+        /* Cart Button Styling */
+        .cart-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #d9534f; /* Merah */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(217, 83, 79, 0.5);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        .cart-button:active {
+            transform: scale(0.95);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #28a745; /* Hijau */
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            line-height: 1;
         }
 
         .menu-card img {
@@ -537,6 +576,9 @@
 
     <!-- Header Section -->
     <header class="header">
+        <button id="cartButton" class="cart-button" aria-label="Keranjang Belanja">
+            🛒 <span id="cartCount" class="cart-count">0</span>
+        </button>
         <div class="container">
             <div class="header-content">
                 <img src="images/logo_baru.png" alt="Logo Penyetan 234" class="logo">
@@ -574,7 +616,7 @@
                                 <li>2 Jenis Sambal</li>
                             </ul>
                         </div>
-                        <a href="https://wa.me/628116173651?text=Halo%2C%20saya%20mau%20pesan%20paket%20Ayam%20Goreng." class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
+	                        <button class="order-button add-to-cart" data-menu-name="Ayam Goreng" data-price="28000">Tambah ke Keranjang</button>
                     </div>
                 </div>
 
@@ -595,7 +637,7 @@
                                 <li>2 Jenis Sambal</li>
                             </ul>
                         </div>
-                        <a href="https://wa.me/628116173651?text=Halo%2C%20saya%20mau%20pesan%20paket%20Ayam%20Bakar." class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
+	                        <button class="order-button add-to-cart" data-menu-name="Ayam Bakar" data-price="30000">Tambah ke Keranjang</button>
                     </div>
                 </div>
 
@@ -617,7 +659,7 @@
                             </ul>
                         </div>
                         <div class="variant-choice-placeholder"></div> <!-- Placeholder untuk tombol varian -->
-                        <a href="#" class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
+	                        <button class="order-button variant-button" data-menu-name="Bebek" data-price="45000" data-has-variant="true">Pilih Varian & Tambah</button>
                     </div>
                 </div>
 
@@ -639,7 +681,7 @@
                             </ul>
                         </div>
                         <div class="variant-choice-placeholder"></div> <!-- Placeholder untuk tombol varian -->
-                        <a href="#" class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
+	                        <button class="order-button variant-button" data-menu-name="Ikan Nila" data-price="33000" data-has-variant="true">Pilih Varian & Tambah</button>
                     </div>
                 </div>
 
@@ -661,7 +703,7 @@
                             </ul>
                         </div>
                         <div class="variant-choice-placeholder"></div> <!-- Placeholder untuk tombol varian -->
-                        <a href="#" class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
+	                        <button class="order-button variant-button" data-menu-name="Ikan Kembung" data-price="28000" data-has-variant="true">Pilih Varian & Tambah</button>
                     </div>
                 </div>
 
@@ -683,7 +725,7 @@
                             </ul>
                         </div>
                         <div class="variant-choice-placeholder"></div> <!-- Placeholder untuk tombol varian -->
-                        <a href="#" class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
+	                        <button class="order-button variant-button" data-menu-name="Ikan Lele" data-price="31000" data-has-variant="true">Pilih Varian & Tambah</button>
                     </div>
                 </div>
             </div>
@@ -725,14 +767,30 @@
 </body>
 </html>
 
-    <!-- The Modal -->
-    <div id="choiceModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3 id="menuTitle">Pilih Varian</h3>
-            <div class="modal-buttons">
-                <button id="choiceGoreng" class="modal-button">Goreng</button>
-                <button id="choiceBakar" class="modal-button">Bakar</button>
-            </div>
-        </div>
-    </div>
+	    <!-- The Modal -->
+	    <div id="choiceModal" class="modal">
+	        <div class="modal-content">
+	            <span class="close-button">&times;</span>
+	            <h3 id="menuTitle">Pilih Varian</h3>
+	            <div class="modal-buttons">
+	                <button id="choiceGoreng" class="modal-button">Goreng</button>
+	                <button id="choiceBakar" class="modal-button">Bakar</button>
+	            </div>
+	        </div>
+	    </div>
+	
+	    <!-- Cart Modal -->
+	    <div id="cartModal" class="modal">
+	        <div class="modal-content">
+	            <span class="close-button cart-close-button">&times;</span>
+	            <h3>Keranjang Belanja Anda</h3>
+	            <ul id="cartItems" class="package-items" style="text-align: left; margin-bottom: 20px;">
+	                <!-- Cart items will be injected here -->
+	            </ul>
+	            <div style="text-align: right; font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;">
+	                Total: <span id="cartTotal">Rp 0</span>
+	            </div>
+	            <button id="checkoutButton" class="order-button" style="background: #28a745;">Checkout via WhatsApp</button>
+	            <button id="clearCartButton" class="order-button" style="background: #d9534f; margin-top: 10px;">Kosongkan Keranjang</button>
+	        </div>
+	    </div>
