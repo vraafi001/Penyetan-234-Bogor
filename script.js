@@ -35,11 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const menuName = menuCard.querySelector('h3').textContent.trim();
             const waLink = e.target.getAttribute('href');
 
+            console.log(`Tombol diklik untuk: ${menuName}`);
+
             // Cek apakah menu memerlukan pilihan Goreng/Bakar
             if (menuName.includes('Goreng / Bakar')) {
+                console.log('Menu bervarian, menampilkan modal.');
                 // Tampilkan modal untuk memilih varian
                 showModal(menuName.replace(' Goreng / Bakar', ''));
             } else {
+                console.log('Menu tidak bervarian, langsung ke WhatsApp.');
                 // Untuk menu yang tidak memerlukan pilihan (Ayam Goreng, Ayam Bakar)
                 // Langsung buka link WhatsApp
                 const message = `Halo, saya mau pesan paket ${menuName}.`;
