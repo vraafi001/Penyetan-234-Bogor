@@ -442,7 +442,6 @@
 
         /* Modal Styling */
         .modal {
-            display: none; /* Tambahkan ini untuk menyembunyikan modal secara default */
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1000; /* Sit on top */
@@ -451,9 +450,13 @@
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-            display: flex;
-            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+        
+        .modal.active {
+            display: block; /* Show when active */
+        }   align-items: center;
             justify-content: center;
         }
 
@@ -721,3 +724,15 @@
 
 </body>
 </html>
+
+    <!-- The Modal -->
+    <div id="choiceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="menuTitle">Pilih Varian</h3>
+            <div class="modal-buttons">
+                <button id="choiceGoreng" class="modal-button">Goreng</button>
+                <button id="choiceBakar" class="modal-button">Bakar</button>
+            </div>
+        </div>
+    </div>

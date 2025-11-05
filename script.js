@@ -1,10 +1,33 @@
 // script.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Ambil semua elemen yang dibutuhkan
+    const modal = document.getElementById('choiceModal');
+    const closeButton = document.querySelector('.close-button');
     const orderButtons = document.querySelectorAll('.order-button');
+    const menuTitleElement = document.getElementById('menuTitle');
+    const choiceGorengButton = document.getElementById('choiceGoreng');
+    const choiceBakarButton = document.getElementById('choiceBakar');
     const waNumber = '628116173651'; // Nomor WhatsApp
 
-    // Event listener untuk semua tombol "Pesan Sekarang (Klik!)"
+    let currentMenuName = '';
+
+    // 2. Fungsi untuk menampilkan modal
+    const showModal = (menuName) => {
+        currentMenuName = menuName;
+        menuTitleElement.textContent = `Pilih Varian untuk ${menuName}`;
+        // Perbaikan: Gunakan class 'active' untuk menampilkan/menyembunyikan modal
+        // Pastikan CSS untuk '.modal' memiliki 'display: none;' dan '.modal.active' memiliki 'display: block;'
+        modal.classList.add('active');
+    };
+
+    // 3. Fungsi untuk menyembunyikan modal
+    const hideModal = () => {
+        modal.classList.remove('active');
+        currentMenuName = '';
+    };
+
+    // 4. Event listener untuk semua tombol "Pesan Sekarang (Klik!)"
     orderButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
@@ -14,25 +37,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Cek apakah menu memerlukan pilihan Goreng/Bakar
             if (menuName.includes('Goreng / Bakar')) {
-                // Untuk menu yang memerlukan pilihan, kita akan membuat pesan WhatsApp yang meminta varian
-                const baseMenuName = menuName.replace(' Goreng / Bakar', '');
-                const message = `Halo, saya mau pesan paket ${baseMenuName}. Mohon infokan varian (Goreng/Bakar) yang tersedia.`;
+                // Tampilkan modal untuk memilih varian
+                showModal(menuName.replace(' Goreng / Bakar', ''));
+            } else {
+                // Untuk menu yang tidak memerlukan pilihan (Ayam Goreng, Ayam Bakar)
+                // Langsung buka link WhatsApp
+                const message = `Halo, saya mau pesan paket ${menuName}.`;
                 const encodedMessage = encodeURIComponent(message);
                 const waLinkWithQuery = `https://wa.me/${waNumber}?text=${encodedMessage}`;
                 window.open(waLinkWithQuery, '_blank');
-            } else {
-                // Untuk menu yang tidak memerlukan pilihan (Ayam Goreng, Ayam Bakar)
-                // Kita akan menggunakan href yang sudah ada (yang seharusnya sudah berisi link WA)
-                // Jika href kosong, kita buat pesan default
-                if (waLink && waLink !== '#') {
-                    window.open(waLink, '_blank');
-                } else {
-                    const message = `Halo, saya mau pesan paket ${menuName}.`;
-                    const encodedMessage = encodeURIComponent(message);
-                    const waLinkWithQuery = `https://wa.me/${waNumber}?text=${encodedMessage}`;
-                    window.open(waLinkWithQuery, '_blank');
-                }
             }
         });
+    });
+
+    // 5. Event listener untuk tombol pilihan "Goreng"
+    choiceGorengButton.addEventListener('click', () => {
+        const message = `Halo, saya mau pesan paket ${currentMenuName} Goreng.`;
+        const encodedMessage = encodeURIComponent(message);
+        const waLink = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+        window.open(waLink, '_blank');
+        hideModal();
+    });
+
+    // 6. Event listener untuk tombol pilihan "Bakar"
+    choiceBakarButton.addEventListener('click', () => {
+        const message = `Halo, saya mau pesan paket ${currentMenuName} Bakar.`;
+        const encodedMessage = encodeURIComponent(message);
+        const waLink = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+        window.open(waLink, '_blank');
+        hideModal();
+    });
+
+    // 7. Event listener untuk tombol tutup modal
+    closeButton.addEventListener('click', hideModal);
+
+    // 8. Event listener untuk menutup modal ketika mengklik di luar modal
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            hideModal();
+        }
     });
 });
