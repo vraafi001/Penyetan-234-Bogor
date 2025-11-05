@@ -24,6 +24,38 @@ document.addEventListener('DOMContentLoaded', () => {
         currentMenuName = '';
     };
 
+    // Fungsi untuk membuat dan menampilkan tombol varian di dalam card (untuk mobile)
+    const createVariantButtons = (menuCard) => {
+        const placeholder = menuCard.querySelector('.variant-choice-placeholder');
+        if (!placeholder) return;
+
+        // Hapus tombol yang mungkin sudah ada
+        placeholder.innerHTML = '';
+
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.classList.add('modal-buttons');
+
+        const menuName = menuCard.querySelector('h3').textContent.trim().replace(' Goreng / Bakar', '');
+
+        const createButton = (variant) => {
+            const button = document.createElement('button');
+            button.textContent = variant;
+            button.classList.add('modal-button', 'choice-button', variant.toLowerCase());
+            button.addEventListener('click', (e) => {
+                e.stopPropagation(); // Mencegah event click menyebar ke order-button
+                const message = \`Halo, saya mau pesan paket \${menuName} \${variant}.\`;
+                const encodedMessage = encodeURIComponent(message);
+                const waLink = \`https://wa.me/\${waNumber}?text=\${encodedMessage}\`;
+                window.open(waLink, '_blank');
+            });
+            return button;
+        };
+
+        buttonsContainer.appendChild(createButton('Goreng'));
+        buttonsContainer.appendChild(createButton('Bakar'));
+        placeholder.appendChild(buttonsContainer);
+    };
+
     // Event listener untuk semua tombol "Pesan Sekarang (Klik!)"
     orderButtons.forEach(button => {
         button.addEventListener('click', (e) => {
@@ -34,7 +66,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Cek apakah menu memerlukan pilihan Goreng/Bakar
             if (menuName.includes('Goreng / Bakar')) {
-                showModal(menuName.replace(' Goreng / Bakar', ''));
+                // Logika untuk menampilkan tombol varian di dalam card (mobile) atau modal (desktop)
+                if (window.innerWidth <= 599) {
+                    const placeholder = menuCard.querySelector('.variant-choice-placeholder');
+                    
+                    // Jika tombol varian sudah ada, jangan lakukan apa-apa (atau bisa juga toggle)
+                    if (placeholder.innerHTML !== '') {
+                        placeholder.innerHTML = ''; // Toggle: Sembunyikan jika sudah ada
+                    } else {
+                        // Sembunyikan semua tombol varian lain
+                        document.querySelectorAll('.variant-choice-placeholder').forEach(p => {
+                            p.innerHTML = '';
+                        });
+                        
+                        // Tampilkan tombol varian di card ini
+                        createVariantButtons(menuCard);
+                    }
+                } else {
+                    // Untuk desktop, tetap gunakan modal
+                    showModal(menuName.replace(' Goreng / Bakar', ''));
+                }
             } else {
                 // Untuk menu yang tidak memerlukan pilihan (Ayam Goreng, Ayam Bakar)
                 window.open(waLink, '_blank');

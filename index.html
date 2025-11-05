@@ -143,6 +143,29 @@
             margin-top: 20px;
         }
 
+        /* Varian Choice Placeholder Styling */
+        .variant-choice-placeholder {
+            display: none; /* Sembunyikan secara default */
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 599px) {
+            .variant-choice-placeholder {
+                display: block; /* Tampilkan di mobile */
+                text-align: center;
+            }
+            .variant-choice-placeholder .modal-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+            .variant-choice-placeholder .modal-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
 
 
         @media (min-width: 600px) {
@@ -590,6 +613,7 @@
                                 <li>2 Jenis Sambal</li>
                             </ul>
                         </div>
+                        <div class="variant-choice-placeholder"></div> <!-- Placeholder untuk tombol varian -->
                         <a href="#" class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
                     </div>
                 </div>
@@ -611,6 +635,7 @@
                                 <li>2 Jenis Sambal</li>
                             </ul>
                         </div>
+                        <div class="variant-choice-placeholder"></div> <!-- Placeholder untuk tombol varian -->
                         <a href="#" class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
                     </div>
                 </div>
@@ -632,6 +657,7 @@
                                 <li>2 Jenis Sambal</li>
                             </ul>
                         </div>
+                        <div class="variant-choice-placeholder"></div> <!-- Placeholder untuk tombol varian -->
                         <a href="#" class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
                     </div>
                 </div>
@@ -653,6 +679,7 @@
                                 <li>2 Jenis Sambal</li>
                             </ul>
                         </div>
+                        <div class="variant-choice-placeholder"></div> <!-- Placeholder untuk tombol varian -->
                         <a href="#" class="order-button" target="_blank">Pesan Sekarang (Klik!)</a>
                     </div>
                 </div>
