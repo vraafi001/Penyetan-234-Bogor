@@ -426,12 +426,14 @@
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
             background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-            padding-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-content {
             background-color: #1a1a1a;
-            margin: 15% auto; /* 15% from the top and centered */
+            margin: auto; /* Centered horizontally and vertically by flexbox */
             padding: 30px;
             border: 1px solid #333;
             width: 90%; /* Could be more or less, depending on screen size */
@@ -466,21 +468,21 @@
         }
 
         #choiceGoreng {
-            background-color: #d9534f; /* Merah */
+            background-color: #28a745; /* Hijau (Sesuai permintaan user) */
             color: white;
         }
 
         #choiceGoreng:hover {
-            background-color: #c9302c;
+            background-color: #1e7e34;
         }
 
         #choiceBakar {
-            background-color: #28a745; /* Hijau */
+            background-color: #d9534f; /* Merah (Sesuai permintaan user) */
             color: white;
         }
 
         #choiceBakar:hover {
-            background-color: #1e7e34;
+            background-color: #c9302c;
         }
 
         .close-button {
