@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Ambil semua elemen yang dibutuhkan
     const modal = document.getElementById('choiceModal');
     const closeButton = document.querySelector('.close-button');
-    const orderButtons = document.querySelectorAll('.order-button');
     const menuTitleElement = document.getElementById('menuTitle');
     const choiceGorengButton = document.getElementById('choiceGoreng');
     const choiceBakarButton = document.getElementById('choiceBakar');
