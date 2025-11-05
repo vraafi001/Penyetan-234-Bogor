@@ -443,7 +443,98 @@
             justify-content: center;
         }
 
+        /* Modal Styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            display: flex; /* Tambahkan flexbox untuk centering */
+            align-items: center; /* Centering vertikal */
+            justify-content: center; /* Centering horizontal */
+            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+            /* padding-top: 60px; - Dihapus karena menggunakan flexbox centering */
+        }
+        
+	        .modal.active {
+	            display: flex; /* Show when active, gunakan flex untuk centering */
+	        }
 
+        .modal-content {
+            background-color: #1a1a1a;
+            margin: 0; /* Hapus margin auto karena sudah di-center oleh flexbox parent */
+            padding: 30px;
+            border: 1px solid #333;
+            width: 90%; /* Could be more or less, depending on screen size */
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            position: relative;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-button {
+            flex-grow: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        #choiceGoreng {
+            background-color: #28a745; /* Hijau (Sesuai permintaan user) */
+            color: white;
+        }
+
+        #choiceGoreng:hover {
+            background-color: #1e7e34;
+        }
+
+        #choiceBakar {
+            background-color: #d9534f; /* Merah (Sesuai permintaan user) */
+            color: white;
+        }
+
+        #choiceBakar:hover {
+            background-color: #c9302c;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -640,6 +731,30 @@
 </body>
 </html>
 
-
+	    <!-- The Modal -->
+	    <div id="choiceModal" class="modal">
+	        <div class="modal-content">
+	            <span class="close-button">&times;</span>
+	            <h3 id="menuTitle">Pilih Varian</h3>
+	            <div class="modal-buttons">
+	                <button id="choiceGoreng" class="modal-button">Goreng</button>
+	                <button id="choiceBakar" class="modal-button">Bakar</button>
+	            </div>
+	        </div>
+	    </div>
 	
-
+	    <!-- Cart Modal -->
+	    <div id="cartModal" class="modal">
+	        <div class="modal-content">
+	            <span class="close-button cart-close-button">&times;</span>
+	            <h3>Keranjang Belanja Anda</h3>
+	            <ul id="cartItems" class="package-items" style="text-align: left; margin-bottom: 20px;">
+	                <!-- Cart items will be injected here -->
+	            </ul>
+	            <div style="text-align: right; font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;">
+	                Total: <span id="cartTotal">Rp 0</span>
+	            </div>
+	            <button id="checkoutButton" class="order-button" style="background: #28a745;">Checkout via WhatsApp</button>
+	            <button id="clearCartButton" class="order-button" style="background: #d9534f; margin-top: 10px;">Kosongkan Keranjang</button>
+	        </div>
+	    </div>
