@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('choiceModal');
     const closeButton = document.querySelector('.close-button');
     const orderButtons = document.querySelectorAll('.order-button');
-    const cartButton = document.getElementById('cartButton');
-    const cartModal = document.getElementById('cartModal');
-    const cartCloseButton = document.querySelector('.cart-close-button');
-    const cartCount = document.getElementById('cartCount');
-    const cartItemsList = document.getElementById('cartItems');
-    const cartTotalElement = document.getElementById('cartTotal');
-    const checkoutButton = document.getElementById('checkoutButton');
-    const clearCartButton = document.getElementById('clearCartButton');
+    // const cartButton = document.getElementById('cartButton');
+    // const cartModal = document.getElementById('cartModal');
+    // const cartCloseButton = document.querySelector('.cart-close-button');
+    // const cartCount = document.getElementById('cartCount');
+    // const cartItemsList = document.getElementById('cartItems');
+    // const cartTotalElement = document.getElementById('cartTotal');
+    // const checkoutButton = document.getElementById('checkoutButton');
+    // const clearCartButton = document.getElementById('clearCartButton');
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let currentMenuPrice = 0;
@@ -140,21 +140,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 9. Event listener untuk tombol keranjang
-    cartButton.addEventListener('click', () => {
-        cartModal.classList.add('active');
-    });
+    // cartButton.addEventListener('click', () => {
+    //     cartModal.classList.add('active');
+    // });
 
     // 10. Event listener untuk tombol tutup modal keranjang
-    cartCloseButton.addEventListener('click', () => {
-        cartModal.classList.remove('active');
-    });
+    // cartCloseButton.addEventListener('click', () => {
+    //     cartModal.classList.remove('active');
+    // });
 
     // 11. Event listener untuk menutup modal keranjang ketika mengklik di luar modal
-    window.addEventListener('click', (e) => {
-        if (e.target === cartModal) {
-            cartModal.classList.remove('active');
-        }
-    });
+    // window.addEventListener('click', (e) => {
+    //     if (e.target === cartModal) {
+    //         cartModal.classList.remove('active');
+    //     }
+    // });
 
     // 12. Event listener untuk tombol hapus item
     cartItemsList.addEventListener('click', (e) => {
@@ -165,42 +165,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 13. Event listener untuk tombol kosongkan keranjang
-    clearCartButton.addEventListener('click', () => {
-        if (confirm('Anda yakin ingin mengosongkan keranjang?')) {
-            cart = [];
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartDisplay();
-            alert('Keranjang dikosongkan.');
-        }
-    });
+    // clearCartButton.addEventListener('click', () => {
+    //     if (confirm('Anda yakin ingin mengosongkan keranjang?')) {
+    //         cart = [];
+    //         localStorage.setItem('cart', JSON.stringify(cart));
+    //         updateCartDisplay();
+    //         alert('Keranjang dikosongkan.');
+    //     }
+    // });
 
     // 14. Event listener untuk tombol Checkout via WhatsApp
-    checkoutButton.addEventListener('click', () => {
-        if (cart.length === 0) {
-            alert('Keranjang Anda kosong!');
-            return;
-        }
+    // checkoutButton.addEventListener('click', () => {
+    //     if (cart.length === 0) {
+    //         alert('Keranjang Anda kosong!');
+    //         return;
+    //     }
 
-        let message = "Halo, saya mau pesan:\n\n";
-        let total = 0;
+    //     let message = "Halo, saya mau pesan:\n\n";
+    //     let total = 0;
 
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            total += itemTotal;
-            message += `${item.quantity}x ${item.name} (${formatRupiah(item.price)}) = ${formatRupiah(itemTotal)}\n`;
-        });
+    //     cart.forEach(item => {
+    //         const itemTotal = item.price * item.quantity;
+    //         total += itemTotal;
+    //         message += `${item.quantity}x ${item.name} (${formatRupiah(item.price)}) = ${formatRupiah(itemTotal)}\n`;
+    //     });
 
-        message += `\nTotal Pesanan: ${formatRupiah(total)}\n\n`;
-        message += "Mohon diproses ya, terima kasih!";
+    //     message += `\nTotal Pesanan: ${formatRupiah(total)}\n\n`;
+    //     message += "Mohon diproses ya, terima kasih!";
 
-        const encodedMessage = encodeURIComponent(message);
-        const waLinkWithQuery = `https://wa.me/${waNumber}?text=${encodedMessage}`;
-        window.open(waLinkWithQuery, '_blank');
+    //     const encodedMessage = encodeURIComponent(message);
+    //     const waLinkWithQuery = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+    //     window.open(waLinkWithQuery, '_blank');
         
-        // Opsional: Kosongkan keranjang setelah checkout
-        // cart = [];
-        // localStorage.setItem('cart', JSON.stringify(cart));
-        // updateCartDisplay();
-        // cartModal.classList.remove('active');
-    });
+    //     // Opsional: Kosongkan keranjang setelah checkout
+    //     // cart = [];
+    //     // localStorage.setItem('cart', JSON.stringify(cart));
+    //     // updateCartDisplay();
+    //     // cartModal.classList.remove('active');
+    // });
 });
