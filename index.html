@@ -453,16 +453,16 @@
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            display: flex; /* Tambahkan flexbox untuk centering */
+            display: none; /* Hidden by default */
             align-items: center; /* Centering vertikal */
             justify-content: center; /* Centering horizontal */
             background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
             /* padding-top: 60px; - Dihapus karena menggunakan flexbox centering */
         }
         
-	        .modal.active {
-	            display: flex; /* Show when active, gunakan flex untuk centering */
-	        }
+		        .modal.active {
+		            display: flex; /* Show when active, gunakan flex untuk centering */
+		        }
 
         .modal-content {
             background-color: #1a1a1a;
